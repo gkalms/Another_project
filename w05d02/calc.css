@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  h1 {
+    text-align: center;
+    margin: 50px auto;
+  }
+  #display {
+    height: 50px;
+    padding: 5px 10px;
+  }
+  #calculator {
+    width: 250px;
+    height: 200px;
+    margin: auto;
+    background: #212121;
+    color: #fff;
+    font-size: 2rem;
+    border-radius: 7px;
+  }
+  .yellow-btn {
+    background-color: orange;
+  }
+  .btn {
+    border-radius: 0;
+  }

@@ -1,0 +1,7 @@
+Express is a framework. 
+Server side library for node js.
+Open source and hosted on github;written in javascript
+npm - node pacakage manager. Assists in minimum set up.
+JSON - javascript object notation
+
+" --Save" is a good habit to do when installing  it writes to the json file and tells what has been installed
