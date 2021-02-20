@@ -1,11 +1,9 @@
-import { MovieContainer, 
-  FunctionalMovieContainer } 
+import {FunctionalMovieContainer } 
   from "./components/MovieContainer";
 
 const App = () => {
   return (
     <div>
-      <MovieContainer />
       <FunctionalMovieContainer/>
     </div>
   );

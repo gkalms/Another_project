@@ -1,53 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 
-class MovieForm extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      title: "",
-      genre: "",
-      description: "",
-    };
-  }
-  handleChange = (e) => {
+const MovieForm = (props) => {
+const [title, setTitle] = useState("");
+const [genre, setGenre] = useState("");
+const [description, setDescription] = useState("");
+
+  const handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  handleSubmit = (e) => {
+
+ const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handleSubmit");
-    this.props.submit(
-      this.state.title,
-      this.state.genre,
-      this.state.description
-    );
+    props.submit(title, genre, description);
   };
-  render() {
+ 
     return (
       <div>
         <h2>Add Movie</h2>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <label>
             Title
             <input
               name="title"
-              value={this.state.title}
-              onChange={this.handleChange}
+              value={title}
+              onChange={handleChange}
             ></input>
           </label>
           <label>
             Genre
             <input
               name="genre"
-              value={this.state.genre}
-              onChange={this.handleChange}
+              value={genre}
+              onChange={handleChange}
             ></input>
           </label>
           <label>
             Description
             <input
               name="description"
-              value={this.state.description}
-              onChange={this.handleChange}
+              value={description}
+              onChange={handleChange}
             ></input>
           </label>
           <button type="submit">Add Movie</button>
@@ -55,6 +48,5 @@ class MovieForm extends React.Component {
       </div>
     );
   }
-}
 
-export default MovieForm;
+export {MovieForm};
