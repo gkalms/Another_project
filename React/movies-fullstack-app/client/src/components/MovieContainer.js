@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import {MovieForm} from "./MovieForm";
+import {MovieFormEdit} from "./MovieFormEdit";
 import {List} from "./List";
 
 const FunctionalMovieContainer = () => {
   // Initialise state variables using hooks
   const [moviesList, setMoviesList] = useState([]);
+  const [movieEdit, setMovieEdit] = useState({genre: "", title: "", description: ""});
 
   const handleMovieClick = (movieIndex) => {
     console.log('movieIndex:', movieIndex)
     const movie = [moviesList[movieIndex]];
-    console.log('movie:', movie)
+    console.log('movie:', movie);
+    setMovieEdit(movie);
   }
 
   const handleMovieFormSubmit = (title, genre, description) => {
@@ -59,6 +62,7 @@ const FunctionalMovieContainer = () => {
       <h1>Movies</h1>
       <List movies={moviesList} handleClick={handleMovieClick} />
       <MovieForm submit={handleMovieFormSubmit} />
+      <MovieFormEdit submit={handleMovieFormSubmit} movie={movieEdit} />
     </div>
   );
 };
