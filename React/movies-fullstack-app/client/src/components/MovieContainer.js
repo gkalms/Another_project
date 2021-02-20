@@ -6,6 +6,12 @@ const FunctionalMovieContainer = () => {
   // Initialise state variables using hooks
   const [moviesList, setMoviesList] = useState([]);
 
+  const handleMovieClick = (movieIndex) => {
+    console.log('movieIndex:', movieIndex)
+    const movie = [moviesList[movieIndex]];
+    console.log('movie:', movie)
+  }
+
   const handleMovieFormSubmit = (title, genre, description) => {
     // Read title and genre state and put in a temp variable which is Obj literal
     const newMovie = { genre: genre, title: title, description: description };
@@ -51,7 +57,7 @@ const FunctionalMovieContainer = () => {
   return (
     <div>
       <h1>Movies</h1>
-      <List movies={moviesList} />
+      <List movies={moviesList} handleClick={handleMovieClick} />
       <MovieForm submit={handleMovieFormSubmit} />
     </div>
   );
