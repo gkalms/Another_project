@@ -1,17 +1,16 @@
 import React from "react";
 
-class List extends React.Component {
-  render() {
+const List = (props) => {
     return (
       <ul>
-        {this.props.movies.map((el, index) => (
+        {props.movies.map((el, index) => (
           <li key={index}>
             Title: {el.title} - Genre: {el.genre}
           </li>
         ))}
       </ul>
     );
-  }
-}
+  };
 
-export default List;
+
+export {List};
