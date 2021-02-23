@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {MovieForm} from "./MovieForm";
-import {MovieFormEdit} from "./MovieFormEdit";
-import {List} from "./List";
+import MovieFormEdit from "./MovieFormEdit";
+import { List } from "./List";
 
 const FunctionalMovieContainer = () => {
   // Initialise state variables using hooks
   const [moviesList, setMoviesList] = useState([]);
-  const [movieEdit, setMovieEdit] = useState({genre: "", title: "", description: ""});
+  const [movieEdit, setMovieEdit] = useState({ genre: '', title: '', description: '' });
 
   const handleMovieClick = (movieIndex) => {
     console.log('movieIndex:', movieIndex)
-    const movie = [moviesList[movieIndex]];
+    const movie = moviesList[movieIndex];
     console.log('movie:', movie);
     setMovieEdit(movie);
   }
+
+  const handleEditMovie = (movie) => {
+console.log("Handle Edit movie", movie);
+  };
 
   const handleMovieFormSubmit = (title, genre, description) => {
     // Read title and genre state and put in a temp variable which is Obj literal
@@ -37,8 +41,7 @@ const FunctionalMovieContainer = () => {
       console.log("use clases: response:", response);
     });
   };
-
-  // Whenever a component renders, anything inside useEffect will be executed!
+  // only runs once
   useEffect(() => {
     fetch("http://localhost:9000/api/v1/movies", {
       method: "GET",
@@ -62,9 +65,9 @@ const FunctionalMovieContainer = () => {
       <h1>Movies</h1>
       <List movies={moviesList} handleClick={handleMovieClick} />
       <MovieForm submit={handleMovieFormSubmit} />
-      <MovieFormEdit submit={handleMovieFormSubmit} movie={movieEdit} />
+      <MovieFormEdit submit={handleEditMovie} movie={movieEdit} />
     </div>
   );
 };
 
-export {FunctionalMovieContainer};
+export { FunctionalMovieContainer };
