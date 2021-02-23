@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {MovieForm} from "./MovieForm";
+import { MovieForm } from "./MovieForm";
 import MovieFormEdit from "./MovieFormEdit";
 import { List } from "./List";
 
@@ -16,7 +16,24 @@ const FunctionalMovieContainer = () => {
   }
 
   const handleEditMovie = (movie) => {
-console.log("Handle Edit movie", movie);
+    console.log("Handle Edit movie", movie);
+    const foundMovieIndex = moviesList.findIndex((movieEl) => {
+      console.log("Movie element:", movieEl);
+      return movieEl._id === movie._id;
+    });
+    console.log("foundMovieIndex:", foundMovieIndex);
+    const newEditedMovies = [...moviesList];
+    newEditedMovies[foundMovieIndex]= movie;
+    setMoviesList(newEditedMovies);
+    fetch(`http://localhost:9000/api/v1/movies/${movie._id}`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body:JSON.stringify(movie)
+    }).then((response) => {
+      console.log('PUT response:', response);
+    })
   };
 
   const handleMovieFormSubmit = (title, genre, description) => {
