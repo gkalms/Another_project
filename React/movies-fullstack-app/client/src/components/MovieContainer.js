@@ -1,53 +1,64 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import { MovieForm } from "./MovieForm";
 import MovieFormEdit from "./MovieFormEdit";
+import MovieFormDelete from "./MovieFormDelete";
 import { List } from "./List";
 
 const FunctionalMovieContainer = () => {
   // Initialise state variables using hooks
   const [moviesList, setMoviesList] = useState([]);
   const [movieEdit, setMovieEdit] = useState({ genre: '', title: '', description: '' });
+  const [movieDelete, setMovieDelete] = useState({ genre: '', title: '', description: '' });
 
   const handleMovieClick = (movieIndex) => {
-    console.log('movieIndex:', movieIndex)
     const movie = moviesList[movieIndex];
-    console.log('movie:', movie);
     setMovieEdit(movie);
+    setMovieDelete(movie);
   }
 
   const handleEditMovie = (movie) => {
-    console.log("Handle Edit movie", movie);
     const foundMovieIndex = moviesList.findIndex((movieEl) => {
-      console.log("Movie element:", movieEl);
       return movieEl._id === movie._id;
     });
-    console.log("foundMovieIndex:", foundMovieIndex);
     const newEditedMovies = [...moviesList];
-    newEditedMovies[foundMovieIndex]= movie;
+    newEditedMovies[foundMovieIndex] = movie;
     setMoviesList(newEditedMovies);
     fetch(`http://localhost:9000/api/v1/movies/${movie._id}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json",
       },
-      body:JSON.stringify(movie)
+      body: JSON.stringify(movie)
     }).then((response) => {
       console.log('PUT response:', response);
+    })
+  };
+
+  const handleDeleteMovie = (movie) => {
+    const foundMovieIndex = moviesList.findIndex((movieEl) => {
+      return movieEl._id === movie._id;
+    });
+    const deleteMovie = [...moviesList];
+    deleteMovie[foundMovieIndex] = movie;
+    setMoviesList(deleteMovie);
+    fetch(`http://localhost:9000/api/v1/movies/${movie._id}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
   };
 
   const handleMovieFormSubmit = (title, genre, description) => {
     // Read title and genre state and put in a temp variable which is Obj literal
     const newMovie = { genre: genre, title: title, description: description };
-
     // moviesList => state variable
     // setMoviesList => function to set your state variable
     const newMovies = [...moviesList];
     newMovies.push(newMovie);
-
     // this.setState({ moviesList: newMovies });
     setMoviesList(newMovies);
-
     fetch("http://localhost:9000/api/v1/movies", {
       method: "POST",
       headers: {
@@ -81,8 +92,20 @@ const FunctionalMovieContainer = () => {
     <div>
       <h1>Movies</h1>
       <List movies={moviesList} handleClick={handleMovieClick} />
-      <MovieForm submit={handleMovieFormSubmit} />
-      <MovieFormEdit submit={handleEditMovie} movie={movieEdit} />
+      <Link to="/movie/add">Add movie</Link>
+      <Link to="/movie/edit">Edit movie</Link>
+      <Link to="/movie/delete">Delete movie</Link>
+      <Switch>
+        <Route path="/movie/add">
+          <MovieForm submit={handleMovieFormSubmit} />
+        </Route>
+        <Route path="/movie/edit">
+          <MovieFormEdit submit={handleEditMovie} movie={movieEdit} />
+        </Route>
+        <Route path="/movie/delete">
+          <MovieFormDelete submit={handleDeleteMovie} movie={movieEdit} />
+        </Route>
+      </Switch>
     </div>
   );
 };
