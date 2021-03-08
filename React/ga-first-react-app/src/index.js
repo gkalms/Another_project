@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import DynamicTable from './App_table_test';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-  <App />
+  <DynamicTable />
   </React.StrictMode>,
   document.getElementById('root')
 );
