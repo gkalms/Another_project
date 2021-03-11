@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const MovieForm = (props) => {
+const MovieFormEdit = (props) => {
   // const [title, setTitle] = useState("");
   // const [genre, setGenre] = useState("");
   // const [description, setDescription] = useState("");
@@ -13,10 +13,10 @@ const MovieForm = (props) => {
     description: ''
   })
 
-  // useEffect(() => {
-  //   console.log('MovieForm useEffect');
-  //   setFormState(props.movie)
-  // }, [props.movie])
+  useEffect(() => {
+    setFormState(props.movie)
+    console.log('useEffect edit')
+  }, [props.movie]);
 
   // 1st element - > state Variable
   // 2nd element - > function to change that state variable
@@ -34,12 +34,12 @@ const MovieForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handleSubmit");
-    props.submit(formState.title, formState.genre, formState.description);
+    props.submit(formState);
   };
 
   return (
     <div>
-      <h2>Add Movie</h2>
+      <h2>Edit Movie</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Title
@@ -57,10 +57,10 @@ const MovieForm = (props) => {
             onChange={handleChange}
           ></input>
         </label>
-        <button type="submit">Add Movie</button>
+        <button type="submit">Edit Movie</button>
       </form>
     </div>
   );
 };
 
-export {MovieForm};
+export default MovieFormEdit;
