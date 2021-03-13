@@ -30,3 +30,10 @@ def greet(name, _last_name)
     end
     
     greet 'georgie', 'Kalms'
+
+#Example 5
+def greet(name, last_name) 
+return "Ciao #{name} #{last_name}"
+end
+    
+p greet 'georgie', 'Kalms'
