@@ -17,8 +17,8 @@ p longest(words)
 #question 2
 even_nums = [0, 2, 4, 6]
 
-def even_nums(list)
-sum = 0
-list.each{|num| sum = num + sum}
+def sum(list)
+newsum = 0
+list.each {|num| newsum = newsum + num}
+p newsum
 end
-sum(num)
