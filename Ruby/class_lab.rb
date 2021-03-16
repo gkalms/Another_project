@@ -1,10 +1,5 @@
 class Classy_car
-attr_accessor :make
-attr_accessor :model
-attr_accessor :year
-attr_accessor :color
-attr_accessor :miles
-
+attr_accessor :make, :color, :miles, :model, :year
 
 def initialize(make, model, year, color)
     @make = make
@@ -27,18 +22,26 @@ def details
     end
  end
 
+ def ahh_fresh_paint
+    puts "The new white color was a good choice"
+ end
+
+ def color
+    @color
+    ahh_fresh_paint
+ end
+
 end
 
 mycar = Classy_car.new 'Toyota', 'Prado', '1998', 'Red'
-p mycar.color
-p mycar.year
-p mycar.make
-p mycar.model
-
+p mycar.details
+mycar.seen_another_year
+mycar.seen_another_year
+mycar.seen_another_year
 mycar.seen_another_year
 p mycar.miles
-
-mycar.seen_another_year
+p mycar.details
 p mycar.miles
+mycar.color 'white'
 
-mycar.details
+
