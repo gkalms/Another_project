@@ -94,3 +94,6 @@ how many computers have less than 3 USB ports:-
 SELECT COUNT(computers2.id)
 FROM computers2
 WHERE number_usb_ports < 3
+
+
+gkalms2021
