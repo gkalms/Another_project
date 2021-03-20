@@ -1,0 +1,99 @@
+Create table:-
+CREATE TABLE computers2 (
+id serial PRIMARY KEY, 
+make varchar(50), 
+model varchar(50), 
+cpu_speed varchar(50), 
+memory_size varchar(50), 
+price float, 
+release_date date, 
+photo_url varchar(50), 
+storage_amount varchar(50), 
+number_usb_ports int, 
+number_firewire_ports int, 
+number_thunderbolt_ports int
+)
+
+Insert information into table:-
+INSERT INTO computers2 (
+make, 
+model, 
+cpu_speed, 
+memory_size, 
+price, 
+release_date, 
+photo_url, 
+storage_amount, 
+number_usb_ports, 
+number_firewire_ports, 
+number_thunderbolt_ports
+)
+VALUES (
+'DELL',
+'XPS 13',
+'4.2ghZ',
+'8GB',
+2000.00,
+'01-01-21',
+'https://i.dell.com/is/image/',
+'256GB',
+2,
+1,
+1
+);
+
+
+Select all:-
+SELECT *
+FROM computers2
+
+Select all computers that have a price of more than 750:-
+SELECT *
+FROM computers2
+WHERE price > 750.00
+
+Select all computers whose make is NOT Apple :-
+SELECT *
+FROM computers2
+WHERE make not like 'apple'
+
+Select all computers with more than 1 thunderbolt port and a price of more than 1000:-
+SELECT *
+FROM computers2
+WHERE number_thunderbolt_ports > 1
+AND
+price > 1000.00
+
+Change the price of your first computer to 1500:-
+UPDATE computers2
+SET price = 1500
+WHERE id = 1
+
+Change the make of all computers costing less than 500 to ACME:-
+UPDATE computers2
+SET make = 'ACME'
+WHERE price < 500.00
+
+Remove the most expensive computer from your database:-
+DELETE from computers2
+WHERE price = (
+SELECT MAX (price)
+FROM computers2
+);
+
+ average cost of a computer:-
+SELECT AVG(computers2.price)
+FROM computers2
+
+average cost of computers according to their make:-
+SELECT computers2.make, AVG(computers2.price)
+FROM computers2
+GROUP BY make
+
+how many computers have less than 3 USB ports:-
+SELECT COUNT(computers2.id)
+FROM computers2
+WHERE number_usb_ports < 3
+
+
+gkalms2021
