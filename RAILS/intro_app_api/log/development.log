@@ -1,0 +1,783 @@
+  [1m[35m (792.7ms)[0m  [1m[35mCREATE DATABASE "intro_app_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (806.9ms)[0m  [1m[35mCREATE DATABASE "intro_app_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (101.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6577983283399664955)[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodos (20210320012742)
+  [1m[36mTRANSACTION (13.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (61.2ms)[0m  [1m[35mCREATE TABLE "todos" ("id" bigserial primary key, "title" character varying, "completed" boolean)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (40.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210320012742"]]
+  [1m[36mTRANSACTION (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (29.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-03-20 01:36:58.707535"], ["updated_at", "2021-03-20 01:36:58.707535"]]
+  [1m[36mTRANSACTION (63.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(6577983283399664955)[0m
+  [1m[35m (34.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTodo Load (1.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (3.3ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed") VALUES ($1, $2) RETURNING "id"[0m  [["title", "new todo"], ["completed", false]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (1.7ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTodo Load (0.9ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."title" = $1 /* loading for inspect */ LIMIT $2[0m  [["title", "new todo"], ["LIMIT", 11]]
+  [1m[36mTodo Load (0.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (24.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Update (3.5ms)[0m  [1m[33mUPDATE "todos" SET "completed" = $1 WHERE "todos"."id" = $2[0m  [["completed", true], ["id", 1]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (1.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Destroy (0.5ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (9.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.7ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed") VALUES ($1, $2) RETURNING "id"[0m  [["title", "new todo"], ["completed", false]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (5.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.9ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed") VALUES ($1, $2) RETURNING "id"[0m  [["title", "new today"], ["completed", true]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTodo Load (6.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTodo Load (18.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed") VALUES ($1, $2) RETURNING "id"[0m  [["title", "Clive Cussler"], ["completed", false]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTodo Load (0.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTodo Load (21.9ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Update (0.6ms)[0m  [1m[33mUPDATE "todos" SET "title" = $1, "completed" = $2 WHERE "todos"."id" = $3[0m  [["title", "Clive Smith"], ["completed", false], ["id", 3]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (23.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTodo Load (8.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Destroy (0.2ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 2]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (1.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "todos"[0m
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT "todos".* FROM "todos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Update (0.4ms)[0m  [1m[33mUPDATE "todos" SET "completed" = $1 WHERE "todos"."id" = $2[0m  [["completed", true], ["id", 4]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (4.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTodo Load (20.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Update (0.6ms)[0m  [1m[33mUPDATE "todos" SET "completed" = $1 WHERE "todos"."id" = $2[0m  [["completed", true], ["id", 3]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (1.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Update (0.4ms)[0m  [1m[33mUPDATE "todos" SET "title" = $1 WHERE "todos"."id" = $2[0m  [["title", "Clive Jones"], ["id", 3]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Started GET "/" for ::1 at 2021-03-20 15:40:31 +1100
+  [1m[35m (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 15.4ms | Allocations: 482)
+Completed 200 OK in 64ms (Views: 33.6ms | ActiveRecord: 0.0ms | Allocations: 4252)
+
+
+Started GET "/favicon.ico" for ::1 at 2021-03-20 15:40:31 +1100
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for ::1 at 2021-03-20 15:45:39 +1100
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 17.1ms | Allocations: 309)
+Completed 200 OK in 70ms (Views: 25.8ms | ActiveRecord: 0.0ms | Allocations: 2473)
+
+
+Started GET "/" for ::1 at 2021-03-20 15:49:46 +1100
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.4ms | Allocations: 190)
+Completed 200 OK in 12ms (Views: 8.5ms | ActiveRecord: 0.0ms | Allocations: 780)
+
+
+Started GET "/" for ::1 at 2021-03-20 15:49:50 +1100
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.4ms | Allocations: 8)
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 257)
+
+
+Started GET "/" for ::1 at 2021-03-20 15:50:08 +1100
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.5ms | Allocations: 7)
+Completed 200 OK in 6ms (Views: 1.9ms | ActiveRecord: 0.0ms | Allocations: 252)
+
+
+Started GET "/welcome" for ::1 at 2021-03-20 15:50:30 +1100
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for WelcomeController
+Did you mean?  Index):
+  
+actionpack (6.1.3) lib/abstract_controller/base.rb:160:in `process'
+actionpack (6.1.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started GET "/welcome" for ::1 at 2021-03-20 15:51:10 +1100
+Processing by WelcomeController#index as HTML
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms | Allocations: 166)
+
+
+Started GET "/welcome" for ::1 at 2021-03-20 15:52:32 +1100
+  
+Zeitwerk::NameError (expected file /Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/welcome_controller.rb to define constant WelcomeController, but didn't):
+  
+zeitwerk (2.4.2) lib/zeitwerk/loader/callbacks.rb:18:in `on_file_autoloaded'
+zeitwerk (2.4.2) lib/zeitwerk/kernel.rb:27:in `block in require'
+zeitwerk (2.4.2) lib/zeitwerk/kernel.rb:26:in `tap'
+zeitwerk (2.4.2) lib/zeitwerk/kernel.rb:26:in `require'
+activesupport (6.1.3) lib/active_support/inflector/methods.rb:274:in `const_get'
+activesupport (6.1.3) lib/active_support/inflector/methods.rb:274:in `constantize'
+activesupport (6.1.3) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:93:in `controller_class_for'
+actionpack (6.1.3) lib/action_dispatch/request/utils.rb:95:in `action_encoding_template'
+actionpack (6.1.3) lib/action_dispatch/request/utils.rb:83:in `encode'
+actionpack (6.1.3) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started GET "/welcome" for ::1 at 2021-03-20 15:52:53 +1100
+Processing by WelcomeController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 116)
+
+
+Started GET "/welcome" for ::1 at 2021-03-20 15:53:24 +1100
+Processing by WelcomeController#index as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/welcome" for ::1 at 2021-03-20 15:53:46 +1100
+Processing by WelcomeController#index as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/welcome" for ::1 at 2021-03-20 15:54:09 +1100
+Processing by WelcomeController#index as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 98)
+
+
+Started GET "/welcome" for ::1 at 2021-03-20 15:54:59 +1100
+Processing by WelcomeController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 96)
+
+
+Started GET "/welcome" for ::1 at 2021-03-20 15:56:33 +1100
+Processing by GeorgieController#index as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 115)
+
+
+Started GET "/welcome" for ::1 at 2021-03-20 15:58:17 +1100
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant GeorgieController):
+  
+Started GET "/welcome" for ::1 at 2021-03-20 16:00:45 +1100
+Processing by WelcomeController#index as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 165)
+
+
+Started GET "/" for ::1 at 2021-03-20 16:53:19 +1100
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 11.8ms | Allocations: 309)
+Completed 200 OK in 37ms (Views: 18.5ms | ActiveRecord: 0.0ms | Allocations: 2473)
+
+
+Started GET "/todos" for ::1 at 2021-03-20 16:53:20 +1100
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for TodosController):
+  
+actionpack (6.1.3) lib/abstract_controller/base.rb:160:in `process'
+actionpack (6.1.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started GET "/todos" for ::1 at 2021-03-20 16:53:23 +1100
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for TodosController):
+  
+actionpack (6.1.3) lib/abstract_controller/base.rb:160:in `process'
+actionpack (6.1.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started GET "/" for ::1 at 2021-03-20 17:02:02 +1100
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 10.6ms | Allocations: 309)
+Completed 200 OK in 34ms (Views: 16.0ms | ActiveRecord: 0.0ms | Allocations: 2476)
+
+
+Started GET "/todos" for ::1 at 2021-03-20 17:02:05 +1100
+Processing by TodosController#index as HTML
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms | Allocations: 163)
+
+
+Started GET "/todos" for ::1 at 2021-03-20 17:08:13 +1100
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TodosController#index as */*
+Completed 200 OK in 27ms (Views: 2.1ms | ActiveRecord: 0.0ms | Allocations: 2319)
+
+
+Started POST "/todos" for ::1 at 2021-03-20 17:09:30 +1100
+Processing by TodosController#create as */*
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 107)
+
+
+Started GET "/todos/1" for ::1 at 2021-03-20 17:10:03 +1100
+Processing by TodosController#show as */*
+  Parameters: {"id"=>"1"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 107)
+
+
+Started GET "/todos/3" for ::1 at 2021-03-20 17:12:03 +1100
+Processing by TodosController#show as */*
+  Parameters: {"id"=>"3"}
+Completed 200 OK in 48ms (Views: 47.0ms | ActiveRecord: 0.0ms | Allocations: 104)
+
+
+Started GET "/todos/1" for ::1 at 2021-03-20 17:12:08 +1100
+Processing by TodosController#show as */*
+  Parameters: {"id"=>"1"}
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms | Allocations: 107)
+
+
+Started PATCH "/todos/1" for ::1 at 2021-03-20 17:13:32 +1100
+Processing by TodosController#update as */*
+  Parameters: {"id"=>"1"}
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 107)
+
+
+Started DELETE "/todos/1" for ::1 at 2021-03-20 17:13:59 +1100
+Processing by TodosController#destroy as */*
+  Parameters: {"id"=>"1"}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 104)
+
+
+Started GET "/" for ::1 at 2021-03-20 17:18:28 +1100
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/georginakalms/.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 39.6ms | Allocations: 309)
+Completed 200 OK in 132ms (Views: 59.4ms | Allocations: 2464)
+
+
+Started GET "/todos" for ::1 at 2021-03-20 17:19:48 +1100
+Processing by TodosController#index as HTML
+Completed 200 OK in 1ms (Views: 0.5ms | Allocations: 96)
+
+
+Started GET "/todos/1" for ::1 at 2021-03-20 17:20:18 +1100
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"1"}
+Completed 200 OK in 1ms (Views: 0.6ms | Allocations: 96)
+
+
+Started GET "/todos/delete" for ::1 at 2021-03-20 17:20:30 +1100
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"delete"}
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 96)
+
+
+Started GET "/todos" for ::1 at 2021-03-20 17:20:35 +1100
+Processing by TodosController#index as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 96)
+
+
+Started GET "/todos/create" for ::1 at 2021-03-20 17:21:40 +1100
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"create"}
+Completed 200 OK in 1ms (Views: 0.4ms | Allocations: 96)
+
+
+Started GET "/todos/create" for ::1 at 2021-03-20 17:21:43 +1100
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"create"}
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 96)
+
+
+Started GET "/todos/create" for ::1 at 2021-03-20 17:21:46 +1100
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"create"}
+Completed 200 OK in 1ms (Views: 0.3ms | Allocations: 96)
+
+
+Started GET "/todos/create" for ::1 at 2021-03-20 17:21:52 +1100
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"create"}
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 96)
+
+
+Started GET "/todos/" for ::1 at 2021-03-20 17:21:57 +1100
+Processing by TodosController#index as HTML
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 96)
+
+
+Started GET "/todos/2" for ::1 at 2021-03-20 17:22:03 +1100
+Processing by TodosController#show as HTML
+  Parameters: {"id"=>"2"}
+Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 96)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6577983283399664955)[0m
+  [1m[35m (5.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddDescToDo (20210320062420)
+  [1m[36mTRANSACTION (11.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (53.0ms)[0m  [1m[35mALTER TABLE "todos" ADD "description" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (30.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210320062420"]]
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (7.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (22.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(6577983283399664955)[0m
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/todos" for ::1 at 2021-03-20 17:38:47 +1100
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"ash", "completed"=>false, "description"=>"new description", "todo"=>{"title"=>"ash", "completed"=>false, "description"=>"new description"}}
+Completed 200 OK in 28ms (Views: 0.8ms | ActiveRecord: 11.0ms | Allocations: 3149)
+
+
+Started POST "/todos" for ::1 at 2021-03-20 17:40:09 +1100
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"ash", "completed"=>false, "description"=>"new description", "todo"=>{"title"=>"ash", "completed"=>false, "description"=>"new description"}}
+Completed 200 OK in 4ms (Views: 1.0ms | ActiveRecord: 11.3ms | Allocations: 158)
+
+
+Started POST "/todos" for ::1 at 2021-03-20 17:41:33 +1100
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Georgie", "completed"=>false, "description"=>"new description", "todo"=>{"title"=>"Georgie", "completed"=>false, "description"=>"new description"}}
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 136)
+
+
+Started POST "/todos" for ::1 at 2021-03-20 17:43:15 +1100
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Georgie", "completed"=>false, "description"=>"new description", "todo"=>{"title"=>"Georgie", "completed"=>false, "description"=>"new description"}}
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 3.9ms | Allocations: 157)
+
+
+Started POST "/todos" for ::1 at 2021-03-20 17:55:25 +1100
+  
+SyntaxError (/Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/todos_controller.rb:6: syntax error, unexpected tLABEL
+...s[:title], description: params:[:decsription], completed: pa...
+...                        ^~~~~~~
+/Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/todos_controller.rb:6: syntax error, unexpected ',', expecting end
+...ription: params:[:decsription], completed: params[:completed...
+...                              ^
+/Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/todos_controller.rb:6: syntax error, unexpected ')', expecting end
+... completed: params[:completed])
+...                              ^):
+  
+app/controllers/todos_controller.rb:6: syntax error, unexpected tLABEL
+app/controllers/todos_controller.rb:6: syntax error, unexpected ',', expecting end
+app/controllers/todos_controller.rb:6: syntax error, unexpected ')', expecting end
+app/controllers/todos_controller.rb:6: syntax error, unexpected tLABEL
+app/controllers/todos_controller.rb:6: syntax error, unexpected ',', expecting end
+app/controllers/todos_controller.rb:6: syntax error, unexpected ')', expecting end
+Started POST "/todos" for ::1 at 2021-03-20 17:56:35 +1100
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Georgie", "completed"=>false, "description"=>"new description", "todo"=>{"title"=>"Georgie", "completed"=>false, "description"=>"new description"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:6:in `create'
+  [1m[36mTodo Create (30.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed") VALUES ($1, $2) RETURNING "id"[0m  [["title", "Georgie"], ["completed", false]]
+  ↳ app/controllers/todos_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:6:in `create'
+Completed 500 Internal Server Error in 94ms (Views: 2.4ms | ActiveRecord: 114.9ms | Allocations: 4301)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  
+app/controllers/todos_controller.rb:13:in `create'
+Started POST "/todos" for ::1 at 2021-03-20 17:58:11 +1100
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Georgie", "completed"=>false, "description"=>"new description", "todo"=>{"title"=>"Georgie", "completed"=>false, "description"=>"new description"}}
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:6:in `create'
+  [1m[36mTodo Create (0.9ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed") VALUES ($1, $2) RETURNING "id"[0m  [["title", "Georgie"], ["completed", false]]
+  ↳ app/controllers/todos_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (25.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:6:in `create'
+Completed 200 OK in 81ms (Views: 0.9ms | ActiveRecord: 73.2ms | Allocations: 3406)
+
+
+Started POST "/todos" for ::1 at 2021-03-20 17:59:18 +1100
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Ash", "completed"=>true, "description"=>"instructor", "todo"=>{"title"=>"Ash", "completed"=>true, "description"=>"instructor"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:6:in `create'
+  [1m[36mTodo Create (0.7ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed") VALUES ($1, $2) RETURNING "id"[0m  [["title", "Ash"], ["completed", true]]
+  ↳ app/controllers/todos_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:6:in `create'
+Completed 200 OK in 27ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 1658)
+
+
+Started POST "/todos" for ::1 at 2021-03-20 18:04:05 +1100
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Elena", "completed"=>true, "description"=>"grand daughter", "todo"=>{"title"=>"Elena", "completed"=>true, "description"=>"grand daughter"}}
+  [1m[36mTRANSACTION (23.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:7:in `create'
+  [1m[36mTodo Create (1.0ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Elena"], ["completed", true], ["description", "grand daughter"]]
+  ↳ app/controllers/todos_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:7:in `create'
+Completed 200 OK in 71ms (Views: 0.5ms | ActiveRecord: 36.5ms | Allocations: 3456)
+
+
+Started PATCH "/todos/3" for ::1 at 2021-03-20 18:13:46 +1100
+Processing by TodosController#update as */*
+  Parameters: {"description"=>"actor", "id"=>"3", "todo"=>{"description"=>"actor"}}
+  [1m[36mTodo Load (1.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTodo Update (24.6ms)[0m  [1m[33mUPDATE "todos" SET "title" = $1, "completed" = $2, "description" = $3 WHERE "todos"."id" = $4[0m  [["title", nil], ["completed", nil], ["description", "actor"], ["id", 3]]
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTRANSACTION (8.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+Completed 200 OK in 63ms (Views: 0.9ms | ActiveRecord: 79.6ms | Allocations: 4382)
+
+
+Started PATCH "/todos/4" for ::1 at 2021-03-20 18:14:13 +1100
+Processing by TodosController#update as */*
+  Parameters: {"description"=>"author", "id"=>"4", "todo"=>{"description"=>"author"}}
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTodo Update (0.8ms)[0m  [1m[33mUPDATE "todos" SET "title" = $1, "completed" = $2, "description" = $3 WHERE "todos"."id" = $4[0m  [["title", nil], ["completed", nil], ["description", "author"], ["id", 4]]
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+Completed 200 OK in 35ms (Views: 0.4ms | ActiveRecord: 2.7ms | Allocations: 2131)
+
+
+Started DELETE "/todos/6" for ::1 at 2021-03-20 18:14:34 +1100
+Processing by TodosController#destroy as */*
+  Parameters: {"description"=>"author", "id"=>"6", "todo"=>{"description"=>"author"}}
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:27:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:27:in `destroy'
+  [1m[36mTodo Destroy (1.0ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/todos_controller.rb:27:in `destroy'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:27:in `destroy'
+Completed 200 OK in 27ms (Views: 0.4ms | ActiveRecord: 3.0ms | Allocations: 1897)
+
+
+Started GET "/todos/5" for ::1 at 2021-03-20 18:15:04 +1100
+Processing by TodosController#show as */*
+  Parameters: {"description"=>"author", "id"=>"5", "todo"=>{"description"=>"author"}}
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:17:in `show'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 577)
+
+
+Started PATCH "/todos/3" for ::1 at 2021-03-20 18:16:50 +1100
+Processing by TodosController#update as */*
+  Parameters: {"title"=>"Clive Jones", "completed"=>false, "description"=>"Actor", "id"=>"3", "todo"=>{"title"=>"Clive Jones", "completed"=>false, "description"=>"Actor"}}
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTodo Update (0.6ms)[0m  [1m[33mUPDATE "todos" SET "title" = $1, "completed" = $2, "description" = $3 WHERE "todos"."id" = $4[0m  [["title", "Clive Jones"], ["completed", false], ["description", "Actor"], ["id", 3]]
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 2.0ms | Allocations: 2125)
+
+
+Started PATCH "/todos/3" for ::1 at 2021-03-20 18:17:14 +1100
+Processing by TodosController#update as */*
+  Parameters: {"title"=>"Clive Cussler", "completed"=>false, "description"=>"Author", "id"=>"3", "todo"=>{"title"=>"Clive Cussler", "completed"=>false, "description"=>"Author"}}
+  [1m[36mTodo Load (0.7ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (25.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTodo Update (1.1ms)[0m  [1m[33mUPDATE "todos" SET "title" = $1, "description" = $2 WHERE "todos"."id" = $3[0m  [["title", "Clive Cussler"], ["description", "Author"], ["id", 3]]
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+Completed 200 OK in 41ms (Views: 0.5ms | ActiveRecord: 28.6ms | Allocations: 2117)
+
+
+Started PATCH "/todos/4" for ::1 at 2021-03-20 18:17:48 +1100
+Processing by TodosController#update as */*
+  Parameters: {"title"=>"Clive Jones", "completed"=>false, "description"=>"Actor", "id"=>"4", "todo"=>{"title"=>"Clive Jones", "completed"=>false, "description"=>"Actor"}}
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTodo Update (25.7ms)[0m  [1m[33mUPDATE "todos" SET "title" = $1, "completed" = $2, "description" = $3 WHERE "todos"."id" = $4[0m  [["title", "Clive Jones"], ["completed", false], ["description", "Actor"], ["id", 4]]
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+Completed 200 OK in 38ms (Views: 0.3ms | ActiveRecord: 28.3ms | Allocations: 2125)
+
+
+Started PATCH "/todos/5" for ::1 at 2021-03-20 18:18:14 +1100
+Error occurred while parsing request parameters.
+Contents:
+
+{
+   "title": "Georgie",
+    "completed": True,
+    "description": "Me"
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{
+   "title": "Georgie",
+    "completed": True,
+    "description": "Me"
+}'):
+  
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:96:in `rescue in parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:92:in `parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:399:in `block in POST'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:398:in `POST'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:284:in `_wrapper_enabled?'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (6.1.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.3) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{
+   "title": "Georgie",
+    "completed": True,
+    "description": "Me"
+}
+Started PUT "/todos/5" for ::1 at 2021-03-20 18:19:02 +1100
+Processing by TodosController#update as */*
+  Parameters: {"title"=>"Georgie", "completed"=>true, "description"=>"Me", "id"=>"5", "todo"=>{"title"=>"Georgie", "completed"=>true, "description"=>"Me"}}
+  [1m[36mTodo Load (0.9ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTodo Update (141.6ms)[0m  [1m[33mUPDATE "todos" SET "completed" = $1, "description" = $2 WHERE "todos"."id" = $3[0m  [["completed", true], ["description", "Me"], ["id", 5]]
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:22:in `update'
+Completed 200 OK in 242ms (Views: 1.6ms | ActiveRecord: 144.9ms | Allocations: 2113)
+
+
+Started DELETE "/todos/7" for ::1 at 2021-03-20 18:19:47 +1100
+Processing by TodosController#destroy as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mTodo Load (1.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:27:in `destroy'
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:27:in `destroy'
+  [1m[36mTodo Destroy (37.4ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/todos_controller.rb:27:in `destroy'
+  [1m[36mTRANSACTION (14.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:27:in `destroy'
+Completed 200 OK in 91ms (Views: 0.4ms | ActiveRecord: 54.4ms | Allocations: 1879)
+
+
