@@ -781,3 +781,30 @@ Processing by TodosController#destroy as */*
 Completed 200 OK in 91ms (Views: 0.4ms | ActiveRecord: 54.4ms | Allocations: 1879)
 
 
+Started GET "/todos" for 127.0.0.1 at 2021-03-23 18:49:00 +1100
+  [1m[35m (4.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TodosController#index as */*
+  [1m[36mTodo Load (25.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/todos_controller.rb:3:in `index'
+Completed 200 OK in 157ms (Views: 60.3ms | ActiveRecord: 68.2ms | Allocations: 6140)
+
+
+Started POST "/todos" for 127.0.0.1 at 2021-03-23 18:53:32 +1100
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Hunter", "completed"=>true, "description"=>"pet", "todo"=>{"title"=>"Hunter", "completed"=>true, "description"=>"pet"}}
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:7:in `create'
+  [1m[36mTodo Create (44.8ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Hunter"], ["completed", true], ["description", "pet"]]
+  ↳ app/controllers/todos_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:7:in `create'
+Completed 200 OK in 62ms (Views: 0.6ms | ActiveRecord: 47.5ms | Allocations: 1863)
+
+
+Started GET "/todos" for 127.0.0.1 at 2021-03-23 18:53:43 +1100
+Processing by TodosController#index as */*
+  [1m[36mTodo Load (5.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/todos_controller.rb:3:in `index'
+Completed 200 OK in 27ms (Views: 21.2ms | ActiveRecord: 5.4ms | Allocations: 935)
+
+
