@@ -1133,3 +1133,333 @@ Processing by TodosController#show as */*
 Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 0.5ms | Allocations: 573)
 
 
+Started GET "/api/todos" for ::1 at 2021-03-25 19:07:16 +1100
+  [1m[35m (30.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::TodosController#index as */*
+  [1m[36mTodo Load (4.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:3:in `index'
+Completed 200 OK in 113ms (Views: 43.8ms | ActiveRecord: 47.8ms | Allocations: 6199)
+
+
+Started POST "/api/todos" for ::1 at 2021-03-25 19:09:28 +1100
+Processing by Api::TodosController#create as */*
+  Parameters: {"title"=>"Leo", "completed"=>true, "description"=>"Cat", "todo"=>{"title"=>"Leo", "completed"=>true, "description"=>"Cat"}}
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/todos_controller.rb:7:in `create'
+  [1m[36mTodo Create (50.3ms)[0m  [1m[32mINSERT INTO "todos" ("title", "completed", "description") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "Leo"], ["completed", true], ["description", "Cat"]]
+  ↳ app/controllers/api/todos_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/todos_controller.rb:7:in `create'
+Completed 200 OK in 72ms (Views: 0.5ms | ActiveRecord: 54.8ms | Allocations: 1863)
+
+
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6577983283399664955)[0m
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210325081533)
+  [1m[36mTRANSACTION (22.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (70.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "title" character varying, "password_digest" character varying)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (24.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210325081533"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(6577983283399664955)[0m
+  [1m[35m (26.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api/todos" for ::1 at 2021-03-25 20:36:38 +1100
+  [1m[35m (25.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::TodosController#index as */*
+  [1m[36mTodo Load (12.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:3:in `index'
+Completed 200 OK in 99ms (Views: 36.1ms | ActiveRecord: 12.8ms | Allocations: 3161)
+
+
+Started POST "/api/users" for ::1 at 2021-03-25 20:38:53 +1100
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Error occurred while parsing request parameters.
+Contents:
+
+{"user" {
+    "name": "georgie"
+    "password": "test1"
+    }
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{"user" {
+    "name": "georgie"
+    "password": "test1"
+    }
+}'):
+  
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:96:in `rescue in parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:92:in `parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:399:in `block in POST'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:398:in `POST'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:284:in `_wrapper_enabled?'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (6.1.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.3) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{"user" {
+    "name": "georgie"
+    "password": "test1"
+    }
+}
+Started POST "/api/users" for ::1 at 2021-03-25 20:39:06 +1100
+Error occurred while parsing request parameters.
+Contents:
+
+{"user" {
+    "name": "georgie",
+    "password": "test1"
+    }
+}
+  
+ActionDispatch::Http::Parameters::ParseError (767: unexpected token at '{"user" {
+    "name": "georgie",
+    "password": "test1"
+    }
+}'):
+  
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:96:in `rescue in parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:92:in `parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:399:in `block in POST'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:398:in `POST'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:284:in `_wrapper_enabled?'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (6.1.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.3) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{"user" {
+    "name": "georgie",
+    "password": "test1"
+    }
+}
+Started POST "/api/users" for ::1 at 2021-03-25 20:39:25 +1100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"georgie", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.0ms | Allocations: 2750)
+
+
+  
+NoMethodError (undefined method `create' for nil:NilClass):
+  
+app/controllers/api/users_controller.rb:7:in `create'
+Started GET "/api/todos" for ::1 at 2021-03-25 20:40:20 +1100
+Processing by Api::TodosController#index as */*
+  Parameters: {"user"=>{"name"=>"georgie", "password"=>"[FILTERED]"}, "todo"=>{}}
+  [1m[36mTodo Load (1.9ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:3:in `index'
+Completed 200 OK in 52ms (Views: 10.3ms | ActiveRecord: 43.5ms | Allocations: 3044)
+
+
+Started GET "/api/todos/8" for ::1 at 2021-03-25 20:40:29 +1100
+Processing by Api::TodosController#show as */*
+  Parameters: {"user"=>{"name"=>"georgie", "password"=>"[FILTERED]"}, "id"=>"8", "todo"=>{}}
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/todos_controller.rb:17:in `show'
+Completed 200 OK in 8ms (Views: 0.5ms | ActiveRecord: 0.7ms | Allocations: 1039)
+
+
+Started GET "/api/users" for ::1 at 2021-03-25 20:43:45 +1100
+Processing by Api::UsersController#index as */*
+  Parameters: {"user"=>{"name"=>"georgie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:3:in `index'
+Completed 200 OK in 19ms (Views: 15.0ms | ActiveRecord: 2.5ms | Allocations: 700)
+
+
+Started POST "/api/users" for ::1 at 2021-03-25 20:45:43 +1100
+  [1m[35m (5.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"john", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 424ms (ActiveRecord: 0.0ms | Allocations: 3582)
+
+
+  
+NoMethodError (undefined method `create' for nil:NilClass):
+  
+app/controllers/api/users_controller.rb:7:in `create'
+Started POST "/api/users" for ::1 at 2021-03-25 20:49:03 +1100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Ashish", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 560)
+
+
+  
+NoMethodError (undefined method `create' for nil:NilClass):
+  
+app/controllers/api/users_controller.rb:7:in `create'
+Started POST "/api/users" for ::1 at 2021-03-25 20:54:03 +1100
+  [1m[35m (28.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"Ashish", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 103ms (ActiveRecord: 45.3ms | Allocations: 5083)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'name' for User.):
+  
+app/controllers/api/users_controller.rb:7:in `create'
+Started GET "/api/users" for ::1 at 2021-03-25 20:54:23 +1100
+Processing by Api::UsersController#index as */*
+  Parameters: {"user"=>{"name"=>"Ashish", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (44.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:3:in `index'
+Completed 200 OK in 78ms (Views: 30.8ms | ActiveRecord: 44.8ms | Allocations: 724)
+
+
+Started POST "/api/users" for ::1 at 2021-03-25 20:56:20 +1100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"title"=>"Ashish", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :title[0m
+Completed 500 Internal Server Error in 1043ms (ActiveRecord: 0.0ms | Allocations: 3132)
+
+
+  
+NoMethodError (undefined method `name' for #<User id: nil, title: nil, password_digest: [FILTERED]>):
+  
+app/controllers/api/users_controller.rb:7:in `create'
+Started POST "/api/users" for ::1 at 2021-03-25 20:58:16 +1100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"title"=>"Ashish", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (37.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Ashish"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Create (51.0ms)[0m  [1m[32mINSERT INTO "users" ("title", "password_digest") VALUES ($1, $2) RETURNING "id"[0m  [["title", "Ashish"], ["password_digest", "$2a$12$QQnK5mVUw.HqC/Yg6TeKBOuvVj0rY9QuxgQZ0NZl/QIxepf.Bu.GO"]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (39.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (33.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."title" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["title", "Ashish"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:8:in `create'
+Completed 201 Created in 1623ms (Views: 1.4ms | ActiveRecord: 269.5ms | Allocations: 5547)
+
+
+Started POST "/api/users" for ::1 at 2021-03-25 20:59:20 +1100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"title"=>"Georgie", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (33.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Create (55.1ms)[0m  [1m[32mINSERT INTO "users" ("title", "password_digest") VALUES ($1, $2) RETURNING "id"[0m  [["title", "Georgie"], ["password_digest", "$2a$12$iPeMYki1evdw.2bKoWibaOup5F/cMDD2G0b5RqFtMLmAvx9O21h8u"]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (57.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (40.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."title" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["title", "Georgie"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:8:in `create'
+Completed 201 Created in 1702ms (Views: 1.3ms | ActiveRecord: 194.0ms | Allocations: 3257)
+
+
+Started POST "/api/users" for ::1 at 2021-03-25 20:59:35 +1100
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"title"=>"Test2", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (73.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Test2"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Create (134.5ms)[0m  [1m[32mINSERT INTO "users" ("title", "password_digest") VALUES ($1, $2) RETURNING "id"[0m  [["title", "Test2"], ["password_digest", "$2a$12$oKaUEhZCTqQkbPTtDy57I.UdNpeuCF9fHQRKNhJB9QnhKTNE8zEAK"]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (13.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+  [1m[36mUser Exists? (184.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."title" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["title", "Test2"], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:8:in `create'
+Completed 201 Created in 2628ms (Views: 1.0ms | ActiveRecord: 407.0ms | Allocations: 3263)
+
+
+Started GET "/api/users" for ::1 at 2021-03-25 21:05:08 +1100
+Processing by Api::UsersController#index as */*
+  Parameters: {"user"=>{"title"=>"Test2", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (3.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:3:in `index'
+Completed 200 OK in 356ms (Views: 348.8ms | ActiveRecord: 140.1ms | Allocations: 4354)
+
+
