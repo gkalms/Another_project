@@ -1463,3 +1463,140 @@ Processing by Api::UsersController#index as */*
 Completed 200 OK in 356ms (Views: 348.8ms | ActiveRecord: 140.1ms | Allocations: 4354)
 
 
+Started GET "/api/users" for ::1 at 2021-03-27 10:20:25 +1100
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#index as */*
+  Parameters: {"user"=>{"title"=>"Test2", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (10.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:3:in `index'
+Completed 200 OK in 56ms (Views: 11.0ms | ActiveRecord: 27.3ms | Allocations: 4888)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 10:45:10 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Test2", "password"=>"[FILTERED]", "auth"=>{"title"=>"Test2", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (27.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 404 Not Found in 108ms (ActiveRecord: 66.9ms | Allocations: 4239)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'={:title=>"Test2"}):
+  
+app/controllers/api/auth_controller.rb:3:in `login'
+Started POST "/api/auth/login" for ::1 at 2021-03-27 10:48:55 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"title"=>"Test2", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"title"=>"Test2", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 404 Not Found in 6ms (ActiveRecord: 0.6ms | Allocations: 702)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'={:title=>nil}):
+  
+app/controllers/api/auth_controller.rb:3:in `login'
+Started POST "/api/auth/login" for ::1 at 2021-03-27 10:49:41 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Test2", "password"=>"[FILTERED]", "auth"=>{"title"=>"Test2", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 404 Not Found in 10ms (ActiveRecord: 0.4ms | Allocations: 678)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'={:title=>"Test2"}):
+  
+app/controllers/api/auth_controller.rb:3:in `login'
+Started POST "/api/auth/login" for ::1 at 2021-03-27 10:52:09 +1100
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Test2", "password"=>"[FILTERED]", "auth"=>{"title"=>"Test2", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 404 Not Found in 69ms (ActiveRecord: 11.7ms | Allocations: 6153)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'={:title=>"Test2"}):
+  
+app/controllers/api/auth_controller.rb:3:in `login'
+Started POST "/api/auth/login" for ::1 at 2021-03-27 10:53:29 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Test2", "password"=>"[FILTERED]", "auth"=>{"title"=>"Test2", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 3.3ms | Allocations: 1607)
+
+
+  
+TypeError (can't cast Hash):
+  
+app/controllers/api/auth_controller.rb:3:in `login'
+Started POST "/api/auth/login" for ::1 at 2021-03-27 10:55:07 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Test2", "password"=>"[FILTERED]", "auth"=>{"title"=>"Test2", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Test2"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 200 OK in 569ms (Views: 0.5ms | ActiveRecord: 18.8ms | Allocations: 3496)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 10:56:14 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgie", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 200 OK in 602ms (Views: 0.6ms | ActiveRecord: 0.7ms | Allocations: 593)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 10:56:45 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgie", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 200 OK in 545ms (Views: 0.8ms | ActiveRecord: 7.3ms | Allocations: 3321)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 11:00:19 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgie", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 200 OK in 469ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 587)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 11:01:47 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgie", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 404 Not Found in 594ms (Views: 0.3ms | ActiveRecord: 11.9ms | Allocations: 3299)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 11:02:18 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgies", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgies", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgies"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.5ms | Allocations: 970)
+
+
+  
+NoMethodError (undefined method `authenticate' for nil:NilClass):
+  
+app/controllers/api/auth_controller.rb:4:in `login'
+Started POST "/api/auth/login" for ::1 at 2021-03-27 11:04:31 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgies", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgies", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgies"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 404 Not Found in 17ms (Views: 0.6ms | ActiveRecord: 2.7ms | Allocations: 1929)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 11:40:34 +1100
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgie", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 200 OK in 394ms (Views: 0.4ms | ActiveRecord: 34.1ms | Allocations: 7712)
+
+
