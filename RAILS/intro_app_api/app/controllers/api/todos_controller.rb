@@ -1,5 +1,5 @@
 class Api::TodosController < ApplicationController
-  before_action :user_exists
+  before_action :user_exists, except: [:index, :show]
 
   def index
     render json: Todo.all

@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController
-    def index
+  before_action :user_exists, except: [:create]  
+  
+  def index
       render json: User.all
     end
   
@@ -39,7 +41,7 @@ class Api::UsersController < ApplicationController
     end
   
     def user_params
-      params.required(:user).permit(:title, :password)
+      params.required(:user).permit(:name, :password)
     end
   
   end

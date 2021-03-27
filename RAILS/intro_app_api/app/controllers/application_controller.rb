@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
+  before_action :user_exists
 
-  def encode_token user_id
+  def encode_token(user_id)
     # Don't hardcode key argument ie 'super-secret$#$!@' as this will be in source control or git.
     # Store in a variable (system variable) outside the code.
     JWT.encode user_id, nil, 'none'
@@ -21,7 +22,7 @@ class ApplicationController < ActionController::API
 
   def user_exists
     valid = decode_token
-    p "valid"
+    p 'valid'
     p valid
     if valid
       true
@@ -29,6 +30,4 @@ class ApplicationController < ActionController::API
       render json: { message: 'Unauthorised' }, status: :unauthorized
     end
   end
-
-
 end
