@@ -1,22 +1,34 @@
 class ApplicationController < ActionController::API
-  def encode_token(user_id)
-    JWT.encode(user_id, 'super_secret!')
+
+  def encode_token user_id
+    # Don't hardcode key argument ie 'super-secret$#$!@' as this will be in source control or git.
+    # Store in a variable (system variable) outside the code.
+    JWT.encode user_id, nil, 'none'
   end
 
-  def decode_token; 
-    auth_token = request_headers[Authorization]
-      if auth_token
-       token = auth_token.split[' ']
-       p 'TOKEN'
-       p token
+  def decode_token
+    auth_token = request.headers['token']
+    if auth_token
+      p auth_token
       begin
-        JWT.decode token[1], 'super_secret!'
+        JWT.decode auth_token, nil, false
       rescue StandardError
+        p 'NIL'
         nil
+      end
     end
+  end
+
+  def user_exists
+    valid = decode_token
+    p "valid"
+    p valid
+    if valid
+      true
+    else
+      render json: { message: 'Unauthorised' }, status: :unauthorized
+    end
+  end
+
+
 end
-end
-# Explaining above workflow:-
-# Take the token string returned from Login function => turn it into an array; strip any spaces => use the array value as the authorisation token
-# token is used/stored by client (browser, api key etc) - and used to get access to backend routes. Example; In cafe, you get the buzzer doodah when you order, to pick up your order you then need to give back the buzzer doodah to be recognised as having the "authority" to pick up the order.
-# token is only valid as long as in same server/login 'session' - if you logout or reset server, you will need to get and supply the new token,

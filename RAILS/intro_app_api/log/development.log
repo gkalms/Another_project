@@ -1600,3 +1600,192 @@ Processing by Api::AuthController#login as */*
 Completed 200 OK in 394ms (Views: 0.4ms | ActiveRecord: 34.1ms | Allocations: 7712)
 
 
+Started GET "/api/todos" for ::1 at 2021-03-27 13:53:44 +1100
+  
+SyntaxError (/Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/application_controller.rb:31: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/application_controller.rb:31: syntax error, unexpected end-of-input, expecting end
+app/controllers/application_controller.rb:31: syntax error, unexpected end-of-input, expecting end
+app/controllers/api/todos_controller.rb:1:in `<main>'
+Started GET "/api/todos" for ::1 at 2021-03-27 13:56:32 +1100
+  
+SyntaxError (/Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/application_controller.rb:31: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/application_controller.rb:31: syntax error, unexpected end-of-input, expecting end
+app/controllers/application_controller.rb:31: syntax error, unexpected end-of-input, expecting end
+app/controllers/api/todos_controller.rb:1:in `<main>'
+Started GET "/api/todos" for ::1 at 2021-03-27 13:57:15 +1100
+  
+SyntaxError (/Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/application_controller.rb:26: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/application_controller.rb:26: syntax error, unexpected end-of-input, expecting end
+app/controllers/application_controller.rb:26: syntax error, unexpected end-of-input, expecting end
+app/controllers/api/todos_controller.rb:1:in `<main>'
+Started GET "/api/todos" for ::1 at 2021-03-27 13:58:20 +1100
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/application_controller.rb:28: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/application_controller.rb:28: syntax error, unexpected end-of-input, expecting end
+app/controllers/application_controller.rb:28: syntax error, unexpected end-of-input, expecting end
+app/controllers/api/todos_controller.rb:1:in `<main>'
+Started GET "/api/todos" for ::1 at 2021-03-27 13:59:33 +1100
+Processing by Api::TodosController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 190)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:00:38 +1100
+Processing by Api::TodosController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 149)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:02:33 +1100
+Processing by Api::TodosController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 149)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 14:04:18 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgie", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 200 OK in 567ms (Views: 0.3ms | ActiveRecord: 48.4ms | Allocations: 6914)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:05:45 +1100
+Processing by Api::TodosController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 220)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:09:34 +1100
+Processing by Api::TodosController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | Allocations: 216)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:10:37 +1100
+Processing by Api::TodosController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | Allocations: 217)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:14:03 +1100
+Processing by Api::TodosController#index as */*
+  [1m[36mTodo Load (29.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:6:in `index'
+Completed 200 OK in 113ms (Views: 104.2ms | ActiveRecord: 54.0ms | Allocations: 5667)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:36:39 +1100
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/application_controller.rb:28: syntax error, unexpected end, expecting end-of-input):
+  
+app/controllers/application_controller.rb:28: syntax error, unexpected end, expecting end-of-input
+app/controllers/application_controller.rb:28: syntax error, unexpected end, expecting end-of-input
+app/controllers/api/todos_controller.rb:1:in `<main>'
+Started POST "/api/users" for ::1 at 2021-03-27 14:37:35 +1100
+  
+SyntaxError (/Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/application_controller.rb:28: syntax error, unexpected end, expecting end-of-input):
+  
+app/controllers/application_controller.rb:28: syntax error, unexpected end, expecting end-of-input
+app/controllers/application_controller.rb:28: syntax error, unexpected end, expecting end-of-input
+app/controllers/api/users_controller.rb:1:in `<main>'
+Started POST "/api/users" for ::1 at 2021-03-27 14:39:58 +1100
+  [1m[35m (31.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/Users/georginakalms/General-assembly/GA_codealong/RAILS/intro_app_api/app/controllers/application_controller.rb:28: syntax error, unexpected end, expecting end-of-input):
+  
+app/controllers/application_controller.rb:28: syntax error, unexpected end, expecting end-of-input
+app/controllers/application_controller.rb:28: syntax error, unexpected end, expecting end-of-input
+app/controllers/api/users_controller.rb:1:in `<main>'
+Started GET "/api/users" for ::1 at 2021-03-27 14:44:17 +1100
+Processing by Api::UsersController#index as */*
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:3:in `index'
+Completed 200 OK in 74ms (Views: 35.6ms | ActiveRecord: 12.7ms | Allocations: 6600)
+
+
+Started GET "/api/users" for ::1 at 2021-03-27 14:44:24 +1100
+Processing by Api::UsersController#index as */*
+  Parameters: {"user"=>{"title"=>"Test2", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:3:in `index'
+Completed 200 OK in 25ms (Views: 24.4ms | ActiveRecord: 0.5ms | Allocations: 802)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:45:21 +1100
+Processing by Api::TodosController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 151)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 14:46:59 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgie", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 200 OK in 404ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 1139)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:48:04 +1100
+Processing by Api::TodosController#index as */*
+  [1m[36mTodo Load (1.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:5:in `index'
+Completed 200 OK in 48ms (Views: 28.0ms | ActiveRecord: 10.0ms | Allocations: 4463)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:49:51 +1100
+Processing by Api::TodosController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 152)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 14:50:07 +1100
+Processing by Api::TodosController#index as */*
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.6ms | Allocations: 1021)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 15:24:21 +1100
+Processing by Api::TodosController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | Allocations: 167)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 15:24:29 +1100
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgie", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 200 OK in 603ms (Views: 0.3ms | ActiveRecord: 75.4ms | Allocations: 5304)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 15:24:54 +1100
+Processing by Api::TodosController#index as */*
+  [1m[36mTodo Load (1.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:5:in `index'
+Completed 200 OK in 28ms (Views: 11.8ms | ActiveRecord: 1.8ms | Allocations: 4100)
+
+
+Started POST "/api/auth/login" for ::1 at 2021-03-27 15:26:41 +1100
+  [1m[35m (29.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::AuthController#login as */*
+  Parameters: {"title"=>"Georgie", "password"=>"[FILTERED]", "auth"=>{"title"=>"Georgie", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."title" = $1 LIMIT $2[0m  [["title", "Georgie"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:3:in `login'
+Completed 200 OK in 1061ms (Views: 0.7ms | ActiveRecord: 67.7ms | Allocations: 7684)
+
+
+Started GET "/api/todos" for ::1 at 2021-03-27 15:27:02 +1100
+Processing by Api::TodosController#index as */*
+  [1m[36mTodo Load (52.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:5:in `index'
+Completed 200 OK in 239ms (Views: 85.6ms | ActiveRecord: 141.3ms | Allocations: 3554)
+
+
