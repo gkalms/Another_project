@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 
-export const ToDoEdit = () => {
+export const TodoEdit = () => {
   const [todo, setTodo] = useState({
     completed: null,
     description: "",
