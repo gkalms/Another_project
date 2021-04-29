@@ -2043,3 +2043,15 @@ Started GET "/todos/3" for 127.0.0.1 at 2021-04-07 19:36:37 +1000
   
 ActionController::RoutingError (No route matches [GET] "/todos/3"):
   
+Started GET "/api/todos" for 127.0.0.1 at 2021-04-08 20:24:57 +1000
+  [1m[35m (5.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::TodosController#index as */*
+  [1m[36mTodo Load (4.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/api/todos_controller.rb:5:in `index'
+Completed 200 OK in 66ms (Views: 7.9ms | ActiveRecord: 39.5ms | Allocations: 6369)
+
+
+Started GET "/todos/8" for 127.0.0.1 at 2021-04-08 20:25:23 +1000
+  
+ActionController::RoutingError (No route matches [GET] "/todos/8"):
+  
